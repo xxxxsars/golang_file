@@ -1,10 +1,3 @@
-
-```cmd
-$ go mod init <package name>
-$ go get ./...
-```
-
-
 使用brew安裝Golang 
 
 ```cmd
@@ -80,6 +73,12 @@ brew uninstall go
 brew switch go 1.4.2
 ```
 
+Go Ｇet無法使用(特定環境無法使用SSL憑證)
+```
+$ set http_proxy=http://<account>:<password>@auhqwsg01.corpnet.auo.com:8080
+$ go env -w GOPROXY=http://proxy.golang.org,direct
+$ go env -w GOSUMDB=off
+```
 
 可能會發生的錯誤 
 
@@ -106,3 +105,35 @@ $ godoc -http=:6060
 ```
 
 在一般情況下，我們的專案都會用到第三方函示，這時如果專案下有*go.mod*檔案，在專案目錄下一樣使用上方指令，就可以看到相關的第三方套件說明。
+
+
+### go mod 使用
+
+go mod可以想成是pyhon的pipenv，透過一個檔案來記錄你的go version和package。
+
+在你新增一個go專案時可以利用下面指令去新增一個go mod
+```
+$ go mod init <專案名稱>
+```
+
+在專案中使用第三方套件使用安裝指令會自動更新go mod
+
+```cmd
+$  go get github.com/gin-gonic/gin
+```
+
+通過分析當前項目的所有源代碼，刪除未使用的模塊依賴項。讓我們更新 main.go 以使用第三方包，同時也會安裝本地端沒有的第三方套件。
+
+```
+$ go mod tidy
+```
+
+注意以上的方式都是透過link的方式去連接本地的套件，假設希望發布給別人使用時就是一個完整的程式碼，可以使用下列指令，他會在你目錄下產生一個vendor目錄，裡面放著相關的第三方套件。
+
+```
+$ go mod vendor
+```
+使用這指令可以在沒安裝套件的電腦編譯
+```
+go build -mod vendor .
+```
