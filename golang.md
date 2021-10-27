@@ -137,3 +137,13 @@ $ go mod vendor
 ```
 go build -mod vendor .
 ```
+
+
+### GO111MODULE變數說明
+
+GO111MODULE="on":開啟時目錄下需要有go.mod檔案，並會將go get的檔案放在$GOPATH/pkg/mod之下，並可以支援不同版本。
+
+GO111MODULE="off"：一般的go package使用方式，go get的檔案放在$GOPATH/src下。
+
+
+GO111MODULE="auto"：結合了上面兩個，當有go.mod會自動切到on，反之則off。
