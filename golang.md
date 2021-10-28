@@ -111,6 +111,11 @@ $ godoc -http=:6060
 
 go mod可以想成是pyhon的pipenv，透過一個檔案來記錄你的go version和package。
 
+使用前要使用下列指令，開啟自動更新module
+```
+$ go env -w GO111MODULE=auto
+```
+
 在你新增一個go專案時可以利用下面指令去新增一個go mod
 ```
 $ go mod init <專案名稱>
