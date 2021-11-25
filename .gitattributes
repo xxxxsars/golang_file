@@ -1,2 +1,4 @@
 go1.17.2.windows-amd64.zip filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+goland-2021.2.3.exe.zip filter=lfs diff=lfs merge=lfs -text
+Miniconda3-latest-Windows-x86_64.exe filter=lfs diff=lfs merge=lfs -text
